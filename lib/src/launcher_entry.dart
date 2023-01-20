@@ -1,9 +1,21 @@
 import 'package:dbus/dbus.dart';
 
 class LauncherEntryService {
-  LauncherEntryService(this._appUri, this._objectPath);
-  final String _appUri;
-  final String _objectPath;
+  LauncherEntryService({required this.appUri, String? objectPath})
+      : objectPath = objectPath ??
+            '/com/canonical/unity/launcherentry/${_djbHash(appUri)}';
+  // https://bazaar.launchpad.net/~unity-team/libunity/trunk/view/head:/src/unity-launcher.vala#L146
+  final String appUri;
+  final String objectPath;
+
+  // https://theartincode.stanis.me/008-djb2/
+  static int _djbHash(String s) {
+    var hash = 5831;
+    for (final r in s.runes) {
+      hash = (hash << 5) + hash + r;
+    }
+    return hash;
+  }
 
   Future<void> update({
     int? count,
@@ -14,11 +26,11 @@ class LauncherEntryService {
     bool? urgent,
   }) =>
       DBusClient.session().emitSignal(
-        path: DBusObjectPath(_objectPath),
+        path: DBusObjectPath(objectPath),
         interface: 'com.canonical.Unity.LauncherEntry',
         name: 'Update',
         values: [
-          DBusString(_appUri),
+          DBusString(appUri),
           DBusDict(
             DBusSignature('s'),
             DBusSignature('v'),

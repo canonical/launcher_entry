@@ -27,10 +27,7 @@ class _LauncherEntryTestPageState extends State<LauncherEntryTestPage> {
   int count = 0;
   double progress = 0;
   bool urgent = false;
-  final service = LauncherEntryService(
-    'application://example.desktop',
-    '/com/canonical/launcherentry/example',
-  );
+  final service = LauncherEntryService(appUri: 'application://example.desktop');
 
   @override
   Widget build(BuildContext context) {
