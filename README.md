@@ -2,6 +2,10 @@ A wrapper around the Unity [LauncherAPI](https://wiki.ubuntu.com/Unity/LauncherA
 
 ## Example application
 
+### Test Setup
+
+Adjust the `Exec` and `Icon` paths in the `example.desktop` file from the asset directory and copy it to an appropriate location, typically `~/.local/share/applications`.
+
 Window:
 
 ![window](.github/assets/window.png)
