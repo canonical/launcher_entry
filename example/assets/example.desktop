@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Launcher Entry Example Application
+Comment=Shows a badge counter and progress bar in the launcher icon
+Keywords=example;
+Exec=example
+Icon=icon.png
+Terminal=false
+Categories=System;

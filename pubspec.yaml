@@ -1,0 +1,23 @@
+name: launcher_entry
+description: A wrapper around the Unity LauncherAPI.
+version: 0.1.0
+repository: https://github.com/d-loose/launcher_entry
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+  flutter: ">=1.17.0"
+
+platforms:
+  linux:
+
+dependencies:
+  dbus: ^0.7.8
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:

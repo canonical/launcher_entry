@@ -1,0 +1,24 @@
+name: example
+publish_to: "none"
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+  flutter: ">=1.17.0"
+
+platforms:
+  linux:
+
+dependencies:
+  flutter:
+    sdk: flutter
+  launcher_entry:
+
+dependency_overrides:
+  flutter_lints: ^2.0.0
+  launcher_entry:
+    path: ../
+
+flutter:
+  assets:
+    - assets/example.desktop
+    - assets/icon.png
