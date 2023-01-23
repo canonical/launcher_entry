@@ -1,6 +1,15 @@
 import 'package:dbus/dbus.dart';
 
+/// The service that provides access to the Launcher API.
 class LauncherEntryService {
+  /// Creates a service instance from a given [appUri] of the form
+  /// `application://$desktop_file_id`.
+  ///
+  /// The [objectPath] defaults to
+  /// ```dart
+  /// '/com/canonical/unity/launcherentry/${_djbHash(appUri)}'
+  /// ```
+  /// to be in compliance with the default AppArmor profile.
   LauncherEntryService({required this.appUri, String? objectPath})
       : objectPath = objectPath ??
             '/com/canonical/unity/launcherentry/${_djbHash(appUri)}';
