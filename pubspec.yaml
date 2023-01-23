@@ -1,7 +1,8 @@
 name: launcher_entry
 description: A wrapper around the Unity LauncherAPI.
 version: 0.1.0
-repository: https://github.com/d-loose/launcher_entry
+repository: https://github.com/canonical/launcher_entry
+issue_tracker: https://github.com/canonical/launcher_entry/issues
 
 environment:
   sdk: '>=2.17.0 <3.0.0'
