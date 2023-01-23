@@ -8,8 +8,8 @@ Adjust the `Exec` and `Icon` paths in the `example.desktop` file from the asset 
 
 Window:
 
-![window](.github/assets/window.png)
+![window](https://raw.githubusercontent.com/canonical/launcher_entry/main/.github/assets/window.png)
 
 Launcher icon:
 
-![icon](.github/assets/icon.png)
+![icon](https://raw.githubusercontent.com/canonical/launcher_entry/main/.github/assets/icon.png)
