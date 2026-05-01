@@ -16,6 +16,7 @@ class LauncherEntryService {
   // https://bazaar.launchpad.net/~unity-team/libunity/trunk/view/head:/src/unity-launcher.vala#L146
   final String appUri;
   final String objectPath;
+  DBusClient? client;
 
   // https://theartincode.stanis.me/008-djb2/
   static int _djbHash(String s) {
@@ -33,34 +34,35 @@ class LauncherEntryService {
     bool? progressVisible,
     String? quicklist,
     bool? urgent,
-  }) =>
-      DBusClient.session().emitSignal(
-        path: DBusObjectPath(objectPath),
-        interface: 'com.canonical.Unity.LauncherEntry',
-        name: 'Update',
-        values: [
-          DBusString(appUri),
-          DBusDict(
-            DBusSignature('s'),
-            DBusSignature('v'),
-            {
-              if (count != null)
-                const DBusString('count'): DBusVariant(DBusInt64(count)),
-              if (countVisible != null)
-                const DBusString('count-visible'):
-                    DBusVariant(DBusBoolean(countVisible)),
-              if (progress != null)
-                const DBusString('progress'): DBusVariant(DBusDouble(progress)),
-              if (progressVisible != null)
-                const DBusString('progress-visible'):
-                    DBusVariant(DBusBoolean(progressVisible)),
-              if (quicklist != null)
-                const DBusString('quicklist'):
-                    DBusVariant(DBusString(quicklist)),
-              if (urgent != null)
-                const DBusString('urgent'): DBusVariant(DBusBoolean(urgent)),
-            },
-          )
-        ],
-      );
+  }) async {
+    client ??= DBusClient.session();
+    await client?.emitSignal(
+      path: DBusObjectPath(objectPath),
+      interface: 'com.canonical.Unity.LauncherEntry',
+      name: 'Update',
+      values: [
+        DBusString(appUri),
+        DBusDict(
+          DBusSignature('s'),
+          DBusSignature('v'),
+          {
+            if (count != null)
+              const DBusString('count'): DBusVariant(DBusInt64(count)),
+            if (countVisible != null)
+              const DBusString('count-visible'):
+                  DBusVariant(DBusBoolean(countVisible)),
+            if (progress != null)
+              const DBusString('progress'): DBusVariant(DBusDouble(progress)),
+            if (progressVisible != null)
+              const DBusString('progress-visible'):
+                  DBusVariant(DBusBoolean(progressVisible)),
+            if (quicklist != null)
+              const DBusString('quicklist'): DBusVariant(DBusString(quicklist)),
+            if (urgent != null)
+              const DBusString('urgent'): DBusVariant(DBusBoolean(urgent)),
+          },
+        )
+      ],
+    );
+  }
 }
